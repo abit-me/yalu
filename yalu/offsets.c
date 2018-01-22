@@ -10,7 +10,7 @@ uint64_t kernproc_offset;
 uint64_t procoff;
 uint64_t rootvnode_offset;
 
-void init_offsets() {
+int init_offsets() {
     struct utsname u = { 0 };
     uname(&u);
 
@@ -112,7 +112,9 @@ void init_offsets() {
     }//some beta ios
     else {
         printf("missing offset, prob crashing\n");
+        return 1;
     }
+    return 0;
 }
 
 uint64_t get_allproc_offset() {

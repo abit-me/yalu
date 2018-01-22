@@ -1,6 +1,8 @@
 #ifndef pte_stuff_h
 #define pte_stuff_h
 
+#import <sys/utsname.h>
+
 uint64_t ReadAnywhere64(uint64_t addr);
 
 #define TTE_INDEX_SHIFT 3

@@ -16,9 +16,11 @@
 #import "offsets.h"
 #import "Jailbreak.h"
 #import "Corruption.h"
+#import "Bootstrap.h"
 
 @interface ViewController ()
 @property(nonatomic, strong) UIButton *jbBtn;
+//@property(nonatomic, strong) UIButton *bsBtn;
 @end
 
 @implementation ViewController
@@ -26,19 +28,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    init_offsets();
-    
     CGRect sRect = [[UIScreen mainScreen] bounds];
     CGSize sSize = sRect.size;
-    CGFloat jbBtnW = 100;
-    CGFloat jbBtnH = 45;
-    CGRect jbBtnRect = CGRectMake(sSize.width/2-jbBtnW/2, sSize.height/2-jbBtnH/2, jbBtnW, jbBtnH);
+    CGFloat jbBtnW = 200;
+    CGFloat jbBtnH = 55;
+    
+    CGRect jbBtnRect = CGRectMake(sSize.width/2-jbBtnW/2, sSize.height/2-jbBtnH/2-20, jbBtnW, jbBtnH);
     self.jbBtn = [[UIButton alloc] initWithFrame:jbBtnRect];
     self.jbBtn.backgroundColor = [UIColor yellowColor];
-    [self.jbBtn setTitle:@"go" forState:UIControlStateNormal];
     [self.jbBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.jbBtn addTarget:self action:@selector(startJailbreak) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.jbBtn];
+    
+    bool jbed = init_offsets();
+    if (jbed == true) {
+        [self.jbBtn setTitle:@"already jailbreaked" forState:UIControlStateNormal];
+        self.jbBtn.enabled = NO;
+    } else if (jbed == false) {
+        [self.jbBtn setTitle:@"jailbreak" forState:UIControlStateNormal];
+        self.jbBtn.enabled = YES;
+    }
+    
+//    CGFloat bsBtnW = 200;
+//    CGFloat bsBtnH = 55;
+//    CGRect bsBtnRect = CGRectMake(sSize.width/2-bsBtnW/2, CGRectGetMaxY(jbBtnRect)+10, bsBtnW, bsBtnH);
+//    self.bsBtn = [[UIButton alloc] initWithFrame:bsBtnRect];
+//    self.bsBtn.backgroundColor = [UIColor yellowColor];
+//    [self.bsBtn setTitle:@"bootstrap" forState:UIControlStateNormal];
+//    [self.bsBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//    [self.bsBtn addTarget:self action:@selector(startBootstrap) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:self.bsBtn];
+}
+
+- (void)showErrAlertView:(NSString *)errStr {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"❌" message:errStr preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"I'm wrong" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
 }
 
 - (void)startJailbreak {
@@ -58,6 +87,12 @@
     
     corp_ret_t cort_ret = corruption(foundport);
     exploit(cort_ret.pt, cort_ret.kernel_base, get_allproc_offset());
+}
+
+- (void)startBootstrap {
+    
+    copy_bootstrap();
+    run_bootstrap();
 }
 
 - (void)didReceiveMemoryWarning {

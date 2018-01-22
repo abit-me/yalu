@@ -20,6 +20,11 @@
 		009C2E352015BEAC004A3D42 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 009C2E332015BEAC004A3D42 /* patchfinder64.o */; };
 		009C2E3A2015C506004A3D42 /* offsets.c in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E382015C506004A3D42 /* offsets.c */; };
 		009C2E3D2015DBFB004A3D42 /* Corruption.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E3C2015DBFB004A3D42 /* Corruption.m */; };
+		009C2E402015FE63004A3D42 /* Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E3F2015FE63004A3D42 /* Bootstrap.m */; };
+		009C2E4620160DE4004A3D42 /* bootstrap.tar in Resources */ = {isa = PBXBuildFile; fileRef = 009C2E422016007D004A3D42 /* bootstrap.tar */; };
+		009C2E4720160DE4004A3D42 /* launchctl in Resources */ = {isa = PBXBuildFile; fileRef = 009C2E432016007D004A3D42 /* launchctl */; };
+		009C2E4820160DE4004A3D42 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = 009C2E442016007D004A3D42 /* reload */; };
+		009C2E4920160DE4004A3D42 /* tar in Resources */ = {isa = PBXBuildFile; fileRef = 009C2E452016007D004A3D42 /* tar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,12 @@
 		009C2E392015C506004A3D42 /* offsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
 		009C2E3B2015DBFB004A3D42 /* Corruption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Corruption.h; sourceTree = "<group>"; };
 		009C2E3C2015DBFB004A3D42 /* Corruption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Corruption.m; sourceTree = "<group>"; };
+		009C2E3E2015FE63004A3D42 /* Bootstrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bootstrap.h; sourceTree = "<group>"; };
+		009C2E3F2015FE63004A3D42 /* Bootstrap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bootstrap.m; sourceTree = "<group>"; };
+		009C2E422016007D004A3D42 /* bootstrap.tar */ = {isa = PBXFileReference; lastKnownFileType = archive.tar; path = bootstrap.tar; sourceTree = "<group>"; };
+		009C2E432016007D004A3D42 /* launchctl */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = launchctl; sourceTree = "<group>"; };
+		009C2E442016007D004A3D42 /* reload */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = reload; sourceTree = "<group>"; };
+		009C2E452016007D004A3D42 /* tar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = tar; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				009C2E1220158B2B004A3D42 /* yalu */,
+				009C2E412016007D004A3D42 /* Resource */,
 				009C2E1120158B2B004A3D42 /* Products */,
 				009C2E2F2015A4E4004A3D42 /* Frameworks */,
 			);
@@ -92,6 +104,8 @@
 				009C2E392015C506004A3D42 /* offsets.h */,
 				009C2E292015A296004A3D42 /* Jailbreak.h */,
 				009C2E2A2015A296004A3D42 /* Jailbreak.m */,
+				009C2E3E2015FE63004A3D42 /* Bootstrap.h */,
+				009C2E3F2015FE63004A3D42 /* Bootstrap.m */,
 				009C2E2D2015A33E004A3D42 /* devicesupport.h */,
 				009C2E2C2015A33E004A3D42 /* devicesupport.m */,
 				009C2E372015BFEB004A3D42 /* pte_stuff.h */,
@@ -113,6 +127,18 @@
 				009C2E302015A4E4004A3D42 /* IOKit.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		009C2E412016007D004A3D42 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				009C2E422016007D004A3D42 /* bootstrap.tar */,
+				009C2E432016007D004A3D42 /* launchctl */,
+				009C2E442016007D004A3D42 /* reload */,
+				009C2E452016007D004A3D42 /* tar */,
+			);
+			name = Resource;
+			path = yalu/Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +199,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				009C2E4620160DE4004A3D42 /* bootstrap.tar in Resources */,
+				009C2E4720160DE4004A3D42 /* launchctl in Resources */,
+				009C2E4820160DE4004A3D42 /* reload in Resources */,
+				009C2E4920160DE4004A3D42 /* tar in Resources */,
 				009C2E2020158B2B004A3D42 /* LaunchScreen.storyboard in Resources */,
 				009C2E1D20158B2B004A3D42 /* Assets.xcassets in Resources */,
 				009C2E1B20158B2B004A3D42 /* Main.storyboard in Resources */,
@@ -190,6 +220,7 @@
 				009C2E2E2015A33E004A3D42 /* devicesupport.m in Sources */,
 				009C2E3D2015DBFB004A3D42 /* Corruption.m in Sources */,
 				009C2E2320158B2B004A3D42 /* main.m in Sources */,
+				009C2E402015FE63004A3D42 /* Bootstrap.m in Sources */,
 				009C2E1520158B2B004A3D42 /* AppDelegate.m in Sources */,
 				009C2E3A2015C506004A3D42 /* offsets.c in Sources */,
 				009C2E2B2015A296004A3D42 /* Jailbreak.m in Sources */,

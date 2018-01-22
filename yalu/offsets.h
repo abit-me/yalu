@@ -33,7 +33,7 @@ extern uint64_t struct_ipc_port_ip_kobject_offset;
 
 extern uint64_t rootvnode_offset;
 
-void init_offsets();
+int init_offsets();
 uint64_t get_allproc_offset();
 uint64_t get_kernproc_offset();
 uint64_t get_procoff();
