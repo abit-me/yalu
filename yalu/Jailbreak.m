@@ -671,8 +671,6 @@ remappage[remapcnt++] = (x & (~PMK));\
         }
     }
     
-    
-    
     uint64_t memcmp_got = find_amfi_memcmpstub();
     uint64_t ret1 = find_ret_0();
     
@@ -684,7 +682,6 @@ remappage[remapcnt++] = (x & (~PMK));\
     
     uint64_t find_string_reference(char* string, enum Search mode);
     uint64_t amfiops = 0;
-    //= find_string_reference("Apple Mobile File Integrity", SearchPrelinkExec);
     char* sbstr = memmem(whole_dump, whole_size, "Apple Mobile File Integrity", strlen("Apple Mobile File Integrity"));
     for (int i = 0; i < whole_size/8; i++) {
         if (*(uint64_t*)(whole_dump+i*8) == (sbstr - (uint64_t)whole_dump + whole_base)) {
