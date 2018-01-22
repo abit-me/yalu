@@ -7,7 +7,7 @@
 //
 
 // patchfinder64 from https://github.com/in7egral/ios-jailbreak-patchfinder64
-
+// #pragma clang diagnostic http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragma
 
 #import "AppDelegate.h"
 
