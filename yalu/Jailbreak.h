@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs);
+
 //@interface Jailbreak : NSObject
 //
 //@end
