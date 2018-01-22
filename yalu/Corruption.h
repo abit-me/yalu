@@ -12,7 +12,6 @@ typedef struct {
     
     mach_port_t pt;
     uint64_t kernel_base;
-    //uint64_t allproc_offset;
 } corp_ret_t;
 
 mach_port_t find_port();

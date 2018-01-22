@@ -288,9 +288,9 @@ corp_ret_t corruption(mach_port_t foundport) {
     corp_ret_t corp_ret;
     corp_ret.kernel_base = kernel_base;
     corp_ret.pt = pt;
-    //corp_ret.allproc_offset = get_allproc_offset();
     return corp_ret;
 }
+
 //@implementation Corruption
 //
 //@end
