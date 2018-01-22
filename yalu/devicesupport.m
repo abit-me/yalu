@@ -36,7 +36,7 @@ int constload() {
 }
 char affine_const_by_surfacevt(uint64_t surfacevt_slid)
 {
-    for (NSArray* arr in collide) {
+    for (NSMutableArray* arr in collide) {
         if ((surfacevt_slid & (0xfffff)) == ([[arr objectAtIndex:1] unsignedLongLongValue] & 0xfffff)) {
             NSLog(@"affined");
             consttable = arr;
