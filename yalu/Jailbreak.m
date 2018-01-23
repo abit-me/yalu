@@ -838,12 +838,13 @@ pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
         WriteAnywhere32(v_mount + 0x71, v_flag);
     }
     
-    if (!copyed_bootstrap()) copy_bootstrap();
+    if (!copyed_bootstrap())
+        copy_bootstrap();
     run_bootstrap();
-    
+    NSLog(@"will done---uid: %d", getuid());
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
-    NSLog(@"done");
+    NSLog(@"have done---uid: %d", getuid());
 }
 
 //@implementation Jailbreak
