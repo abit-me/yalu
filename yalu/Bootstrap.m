@@ -229,5 +229,5 @@ void run_bootstrap() {
 
     chmod_private();
     disable_upgrade();
-    my_system("/bin/launchctl", (char *[]){"load", "/Library/LaunchDaemons/0.reload.plist", "&", NULL});
+    my_system("/bin/launchctl", (char *[]){"load", "/Library/LaunchDaemons/0.reload.plist", NULL});
 }
