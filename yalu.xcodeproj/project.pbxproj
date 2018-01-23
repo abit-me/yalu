@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0062914E2017248200FB687B /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0062914C2017248200FB687B /* 0.reload.plist */; };
+		0062914F2017248200FB687B /* dropbear.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0062914D2017248200FB687B /* dropbear.plist */; };
 		009C2E1520158B2B004A3D42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E1420158B2B004A3D42 /* AppDelegate.m */; };
 		009C2E1820158B2B004A3D42 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E1720158B2B004A3D42 /* ViewController.m */; };
 		009C2E1B20158B2B004A3D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009C2E1920158B2B004A3D42 /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0062914C2017248200FB687B /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
+		0062914D2017248200FB687B /* dropbear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dropbear.plist; sourceTree = "<group>"; };
 		009C2E1020158B2B004A3D42 /* yalu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yalu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009C2E1320158B2B004A3D42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		009C2E1420158B2B004A3D42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 				009C2E432016007D004A3D42 /* launchctl */,
 				009C2E442016007D004A3D42 /* reload */,
 				009C2E452016007D004A3D42 /* tar */,
+				0062914C2017248200FB687B /* 0.reload.plist */,
+				0062914D2017248200FB687B /* dropbear.plist */,
 			);
 			name = Resource;
 			path = yalu/Resource;
@@ -203,7 +209,9 @@
 				009C2E4720160DE4004A3D42 /* launchctl in Resources */,
 				009C2E4820160DE4004A3D42 /* reload in Resources */,
 				009C2E4920160DE4004A3D42 /* tar in Resources */,
+				0062914F2017248200FB687B /* dropbear.plist in Resources */,
 				009C2E2020158B2B004A3D42 /* LaunchScreen.storyboard in Resources */,
+				0062914E2017248200FB687B /* 0.reload.plist in Resources */,
 				009C2E1D20158B2B004A3D42 /* Assets.xcassets in Resources */,
 				009C2E1B20158B2B004A3D42 /* Main.storyboard in Resources */,
 			);
