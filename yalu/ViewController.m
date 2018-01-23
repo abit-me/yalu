@@ -20,7 +20,6 @@
 
 @interface ViewController ()
 @property(nonatomic, strong) UIButton *jbBtn;
-//@property(nonatomic, strong) UIButton *bsBtn;
 @end
 
 @implementation ViewController
@@ -35,29 +34,19 @@
     
     CGRect jbBtnRect = CGRectMake(sSize.width/2-jbBtnW/2, sSize.height/2-jbBtnH/2-20, jbBtnW, jbBtnH);
     self.jbBtn = [[UIButton alloc] initWithFrame:jbBtnRect];
-    self.jbBtn.backgroundColor = [UIColor yellowColor];
+    //self.jbBtn.backgroundColor = [UIColor yellowColor];
     [self.jbBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.jbBtn addTarget:self action:@selector(startJailbreak) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.jbBtn];
     
-    bool jbed = init_offsets();
+    int jbed = init_offsets();
     if (jbed == true) {
-        [self.jbBtn setTitle:@"already jailbreaked" forState:UIControlStateNormal];
+        [self.jbBtn setTitle:@"already jailbroken" forState:UIControlStateNormal];
         self.jbBtn.enabled = NO;
     } else if (jbed == false) {
-        [self.jbBtn setTitle:@"jailbreak" forState:UIControlStateNormal];
+        [self.jbBtn setTitle:@"go" forState:UIControlStateNormal];
         self.jbBtn.enabled = YES;
     }
-    
-//    CGFloat bsBtnW = 200;
-//    CGFloat bsBtnH = 55;
-//    CGRect bsBtnRect = CGRectMake(sSize.width/2-bsBtnW/2, CGRectGetMaxY(jbBtnRect)+10, bsBtnW, bsBtnH);
-//    self.bsBtn = [[UIButton alloc] initWithFrame:bsBtnRect];
-//    self.bsBtn.backgroundColor = [UIColor yellowColor];
-//    [self.bsBtn setTitle:@"bootstrap" forState:UIControlStateNormal];
-//    [self.bsBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//    [self.bsBtn addTarget:self action:@selector(startBootstrap) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:self.bsBtn];
 }
 
 - (void)showErrAlertView:(NSString *)errStr {
@@ -87,6 +76,7 @@
     
     corp_ret_t cort_ret = corruption(foundport);
     exploit(cort_ret.pt, cort_ret.kernel_base, get_allproc_offset());
+    [self.jbBtn setTitle:@"already jailbroken" forState:UIControlStateNormal];
 }
 
 - (void)startBootstrap {
