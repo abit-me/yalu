@@ -61,9 +61,11 @@
 
 - (void)startJailbreak {
     
+    self.jbBtn.enabled = NO;
     mach_port_t foundport = find_port();
     if (foundport == 0) {
         [self.jbBtn setTitle:@"failed, retry" forState:UIControlStateNormal];
+        self.jbBtn.enabled = YES;
         return;
     }
     NSLog(@"found corruption %x", foundport);
@@ -71,12 +73,14 @@
     kern_return_t kret = get_clock(foundport);
     if (kret == KERN_FAILURE) {
         [self.jbBtn setTitle:@"failed, retry" forState:UIControlStateNormal];
+        self.jbBtn.enabled = YES;
         return;
     }
     
     corp_ret_t cort_ret = corruption(foundport);
     exploit(cort_ret.pt, cort_ret.kernel_base, get_allproc_offset());
     [self.jbBtn setTitle:@"already jailbroken" forState:UIControlStateNormal];
+    self.jbBtn.enabled = NO;
 }
 
 - (void)startBootstrap {
