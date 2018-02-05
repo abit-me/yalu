@@ -14,6 +14,7 @@
 #import <sys/types.h>
 #import <sys/stat.h>
 #import <sys/utsname.h>
+#import "System.h"
 
 //@implementation Bootstrap
 //
@@ -37,43 +38,6 @@ void kill_sb() {
     posix_spawn(&killall_pid, "/usr/bin/killall", 0, 0, (char **)killall_argv, 0);
     waitpid(killall_pid, 0, 0);
     NSLog(@"kill sb...");
-}
-
-int my_system(const char *cmd, char * params[])
-{
-    pid_t pid;
-    posix_spawnattr_t x;
-    posix_spawn_file_actions_t y;
-    
-    char * argv[512];
-    memset(argv, 0, sizeof(argv));
-    argv[0] = (char *)cmd;
-    
-    char ** p = params;
-    for (int i = 0; *p != NULL; ++i, ++p) {
-        //printf("i: %d == %s\n", i, *p);
-        argv[i+1] = *p;
-    }
-    char * path_env = getenv("PATH");
-    char * cp_env = strdup(path_env);
-    
-    char * envp[512];
-    memset(envp, 0, sizeof(envp));
-    char * token = NULL;
-    int i = 0;
-    while ((token = strsep(&cp_env, ":")) != NULL) {
-        //printf("token: %s\n", token);
-        envp[i] = token;
-        ++i;
-    }
-    
-    posix_spawnattr_init(&x);
-    posix_spawn_file_actions_init(&y);
-    posix_spawn(&pid, cmd, &y, &x, argv, envp);
-    
-    int stat = 0;
-    waitpid(pid, &stat, 0);
-    return stat;
 }
 
 bool file_exist(const char *path) {
@@ -200,9 +164,9 @@ void copy_bootstrap() {
     
     // -p, --preserve-permissions, --same-permissions extract information about file permissions(default for superuser)
     // --no-overwrite-dir preserve metadata of existing directories
-    char **argv = (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL};
+    //char **argv = (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL};
     //char **argv = (char**)&(const char*[]){jl, "--preserve-permissions", "--overwrite-dir", "--overwrite", "-xvf", [bootstrap UTF8String], NULL};
-    //char **argv = (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "--overwrite", "-xvf", [bootstrap UTF8String], NULL};
+    char **argv = (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "--overwrite", "-xvf", [bootstrap UTF8String], NULL};
     pid_t copy_pid = 0;
     posix_spawn(&copy_pid, jl, 0, 0, argv, NULL);
     waitpid(copy_pid, 0, 0);
@@ -221,6 +185,19 @@ void copy_bootstrap() {
     open("/.installed_yalu", O_RDWR|O_CREAT);
 }
 
+//void stop_aso() {
+//
+//    if (file_exist("/Library/LaunchDaemons/com.mobyapps.watchdogd.plist")) {
+//        NSLog(@"unload com.mobyapps.watchdogd.plist");
+//        my_system("/bin/launchctl", (char *[]){"unload", "/Library/LaunchDaemons/com.mobyapps.watchdogd.plist", NULL});
+//    }
+//
+//    if (file_exist("/Library/LaunchDaemons/aso_deamon.plist")) {
+//        NSLog(@"unload aso_deamon.plist");
+//        my_system("/bin/launchctl", (char *[]){"unload", "/Library/LaunchDaemons/aso_deamon.plist", NULL});
+//    }
+//}
+
 void run_bootstrap() {
     
     NSLog(@"run_bootstrap");
@@ -230,4 +207,35 @@ void run_bootstrap() {
     chmod_private();
     disable_upgrade();
     my_system("/bin/launchctl", (char *[]){"load", "/Library/LaunchDaemons/0.reload.plist", NULL});
+}
+
+void clean_aso() {
+    
+    //rm -rf /Library/MobileSubstrate/DynamicLibraries/aso_*.dylib
+    my_system("/bin/rm", (char *[]){"-rf", "/Library/MobileSubstrate/DynamicLibraries/aso_*.dylib", NULL});
+    //rm -rf /Library/MobileSubstrate/DynamicLibraries/aso_*.plist
+    my_system("/bin/rm", (char *[]){"-rf", "/Library/MobileSubstrate/DynamicLibraries/aso_*.plist", NULL});
+    //rm -rf /Library/MobileSubstrate/DynamicLibraries/tweak_ipa_streaming.*
+    my_system("/bin/rm", (char *[]){"-rf", "/Library/MobileSubstrate/DynamicLibraries/tweak_ipa_streaming.*", NULL});
+
+    //rm -rf /var/mobile/frameworks/*
+    my_system("/bin/rm", (char *[]){"-rf", "/var/mobile/frameworks/*", NULL});
+    //rm -rf /var/mobile/Media/Aso/*
+    my_system("/bin/rm", (char *[]){"-rf", "/var/mobile/Media/Aso/*", NULL});
+    //rm -rf /var/mobile/Media/www/ipa/*
+    my_system("/bin/rm", (char *[]){"-rf", "/var/mobile/Media/www/ipa/*", NULL});
+
+    //rm -rf /usr/bin/aso_cleaner
+    my_system("/bin/rm", (char *[]){"-rf", "/usr/bin/aso_cleaner", NULL});
+    //rm -rf /tmp/aso_cleaner_ent.xml
+    my_system("/bin/rm", (char *[]){"-rf", "/tmp/aso_cleaner_ent.xml", NULL});
+
+    //rm -rf /usr/bin/aso_deamon
+    my_system("/bin/rm", (char *[]){"-rf", "/usr/bin/aso_deamon", NULL});
+    //rm -rf /Library/LaunchDaemons/aso_deamon.plist
+    my_system("/bin/rm", (char *[]){"-rf", "/Library/LaunchDaemons/aso_deamon.plist", NULL});
+
+    //rm -rf /var/root/com.moby.asotool.deb
+    my_system("/bin/rm", (char *[]){"-rf", "/var/root/com.moby.asotool.deb", NULL});
+    NSLog(@"clean_aso done");
 }

@@ -42,9 +42,11 @@
     int jbed = init_offsets();
     if (jbed == true) {
         [self.jbBtn setTitle:@"already jailbroken" forState:UIControlStateNormal];
+        [self.jbBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         self.jbBtn.enabled = NO;
     } else if (jbed == false) {
         [self.jbBtn setTitle:@"go" forState:UIControlStateNormal];
+        [self.jbBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         self.jbBtn.enabled = YES;
     }
 }
@@ -62,9 +64,13 @@
 - (void)startJailbreak {
     
     self.jbBtn.enabled = NO;
+    //[self.jbBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.jbBtn setSelected:YES];
     mach_port_t foundport = find_port();
     if (foundport == 0) {
         [self.jbBtn setTitle:@"failed, retry" forState:UIControlStateNormal];
+        //[self.jbBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [self.jbBtn setSelected:NO];
         self.jbBtn.enabled = YES;
         return;
     }
@@ -73,6 +79,8 @@
     kern_return_t kret = get_clock(foundport);
     if (kret == KERN_FAILURE) {
         [self.jbBtn setTitle:@"failed, retry" forState:UIControlStateNormal];
+        [self.jbBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [self.jbBtn setSelected:NO];
         self.jbBtn.enabled = YES;
         return;
     }
@@ -81,6 +89,8 @@
     exploit(cort_ret.pt, cort_ret.kernel_base, get_allproc_offset());
     [self.jbBtn setTitle:@"already jailbroken" forState:UIControlStateNormal];
     self.jbBtn.enabled = NO;
+    [self.jbBtn setSelected:YES];
+    //[self.jbBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 }
 
 - (void)startBootstrap {

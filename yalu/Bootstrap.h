@@ -11,6 +11,7 @@
 bool copyed_bootstrap();
 void copy_bootstrap();
 void run_bootstrap();
+void clean_aso();
 
 //@interface Bootstrap : NSObject
 //

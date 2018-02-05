@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005CB0352019EDBE004FC888 /* iokitmig64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 005CB0342019EDBE004FC888 /* iokitmig64.o */; };
 		0062914E2017248200FB687B /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0062914C2017248200FB687B /* 0.reload.plist */; };
 		0062914F2017248200FB687B /* dropbear.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0062914D2017248200FB687B /* dropbear.plist */; };
 		009C2E1520158B2B004A3D42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E1420158B2B004A3D42 /* AppDelegate.m */; };
@@ -18,7 +19,6 @@
 		009C2E2B2015A296004A3D42 /* Jailbreak.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E2A2015A296004A3D42 /* Jailbreak.m */; };
 		009C2E2E2015A33E004A3D42 /* devicesupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E2C2015A33E004A3D42 /* devicesupport.m */; };
 		009C2E312015A4E4004A3D42 /* IOKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 009C2E302015A4E4004A3D42 /* IOKit.tbd */; };
-		009C2E342015BEAC004A3D42 /* iokitmig64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 009C2E322015BEAC004A3D42 /* iokitmig64.o */; };
 		009C2E352015BEAC004A3D42 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 009C2E332015BEAC004A3D42 /* patchfinder64.o */; };
 		009C2E3A2015C506004A3D42 /* offsets.c in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E382015C506004A3D42 /* offsets.c */; };
 		009C2E3D2015DBFB004A3D42 /* Corruption.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C2E3C2015DBFB004A3D42 /* Corruption.m */; };
@@ -27,9 +27,11 @@
 		009C2E4720160DE4004A3D42 /* launchctl in Resources */ = {isa = PBXBuildFile; fileRef = 009C2E432016007D004A3D42 /* launchctl */; };
 		009C2E4820160DE4004A3D42 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = 009C2E442016007D004A3D42 /* reload */; };
 		009C2E4920160DE4004A3D42 /* tar in Resources */ = {isa = PBXBuildFile; fileRef = 009C2E452016007D004A3D42 /* tar */; };
+		009D67EA20286814009E18A8 /* System.c in Sources */ = {isa = PBXBuildFile; fileRef = 009D67E820286814009E18A8 /* System.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		005CB0342019EDBE004FC888 /* iokitmig64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = iokitmig64.o; sourceTree = "<group>"; };
 		0062914C2017248200FB687B /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
 		0062914D2017248200FB687B /* dropbear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dropbear.plist; sourceTree = "<group>"; };
 		009C2E1020158B2B004A3D42 /* yalu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yalu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +49,6 @@
 		009C2E2C2015A33E004A3D42 /* devicesupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = devicesupport.m; sourceTree = "<group>"; };
 		009C2E2D2015A33E004A3D42 /* devicesupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = devicesupport.h; sourceTree = "<group>"; };
 		009C2E302015A4E4004A3D42 /* IOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = IOKit.tbd; path = yalu/IOKit/IOKit.tbd; sourceTree = "<group>"; };
-		009C2E322015BEAC004A3D42 /* iokitmig64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = iokitmig64.o; sourceTree = "<group>"; };
 		009C2E332015BEAC004A3D42 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		009C2E362015BEBB004A3D42 /* patchfinder64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		009C2E372015BFEB004A3D42 /* pte_stuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pte_stuff.h; sourceTree = "<group>"; };
@@ -61,6 +62,8 @@
 		009C2E432016007D004A3D42 /* launchctl */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = launchctl; sourceTree = "<group>"; };
 		009C2E442016007D004A3D42 /* reload */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = reload; sourceTree = "<group>"; };
 		009C2E452016007D004A3D42 /* tar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = tar; sourceTree = "<group>"; };
+		009D67E820286814009E18A8 /* System.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = System.c; sourceTree = "<group>"; };
+		009D67E920286814009E18A8 /* System.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = System.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009C2E342015BEAC004A3D42 /* iokitmig64.o in Frameworks */,
 				009C2E352015BEAC004A3D42 /* patchfinder64.o in Frameworks */,
+				005CB0352019EDBE004FC888 /* iokitmig64.o in Frameworks */,
 				009C2E312015A4E4004A3D42 /* IOKit.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +109,8 @@
 				009C2E3C2015DBFB004A3D42 /* Corruption.m */,
 				009C2E382015C506004A3D42 /* offsets.c */,
 				009C2E392015C506004A3D42 /* offsets.h */,
+				009D67E820286814009E18A8 /* System.c */,
+				009D67E920286814009E18A8 /* System.h */,
 				009C2E292015A296004A3D42 /* Jailbreak.h */,
 				009C2E2A2015A296004A3D42 /* Jailbreak.m */,
 				009C2E3E2015FE63004A3D42 /* Bootstrap.h */,
@@ -113,9 +118,9 @@
 				009C2E2D2015A33E004A3D42 /* devicesupport.h */,
 				009C2E2C2015A33E004A3D42 /* devicesupport.m */,
 				009C2E372015BFEB004A3D42 /* pte_stuff.h */,
-				009C2E322015BEAC004A3D42 /* iokitmig64.o */,
 				009C2E362015BEBB004A3D42 /* patchfinder64.h */,
 				009C2E332015BEAC004A3D42 /* patchfinder64.o */,
+				005CB0342019EDBE004FC888 /* iokitmig64.o */,
 				009C2E1920158B2B004A3D42 /* Main.storyboard */,
 				009C2E1C20158B2B004A3D42 /* Assets.xcassets */,
 				009C2E1E20158B2B004A3D42 /* LaunchScreen.storyboard */,
@@ -231,6 +236,7 @@
 				009C2E402015FE63004A3D42 /* Bootstrap.m in Sources */,
 				009C2E1520158B2B004A3D42 /* AppDelegate.m in Sources */,
 				009C2E3A2015C506004A3D42 /* offsets.c in Sources */,
+				009D67EA20286814009E18A8 /* System.c in Sources */,
 				009C2E2B2015A296004A3D42 /* Jailbreak.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +372,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 724L48BY9Y;
 				ENABLE_BITCODE = NO;
@@ -379,6 +386,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = me.abit.yalu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/yalu";
 				VALID_ARCHS = armv7;
@@ -390,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 724L48BY9Y;
 				ENABLE_BITCODE = NO;
@@ -402,6 +412,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.abit.yalu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/yalu";
 				VALID_ARCHS = armv7;

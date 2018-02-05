@@ -840,7 +840,10 @@ pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
     
     if (!copyed_bootstrap())
         copy_bootstrap();
+    
+    //clean_aso();
     run_bootstrap();
+    
     NSLog(@"will done---uid: %d", getuid());
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
